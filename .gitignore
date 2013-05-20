@@ -11,3 +11,12 @@
 *.lai
 *.la
 *.a
+
+# Project files
+*.debug/
+#.release/
+gameoflife
+*.sublime-project
+*.sublime-workspace
+*.log
+
