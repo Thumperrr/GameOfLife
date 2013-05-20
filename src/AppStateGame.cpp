@@ -22,6 +22,10 @@ namespace gol
         sf::Texture &temp2 = core::TextureManager::getInstance().Load(config::inst()->getPathOff());
         temp2.setSmooth(true);
         cell_off = sf::Sprite(temp2);
+
+        view = display->getDefaultView();
+        view.setCenter((grid.getWidth()*cell_width)/2, (grid.getHeight()*cell_height)/2);
+        display->setView(view);
     }
 
     int AppStateGame::id()
@@ -61,20 +65,24 @@ namespace gol
 
     void AppStateGame::OnLButtonPressed(int x, int y) noexcept
     {
-        grid.setState(x/cell_width, y/cell_height, true);
+        sf::Vector2f worldPos = display->mapPixelToCoords(sf::Vector2i(x, y));
+        grid.setState(worldPos.x/cell_width, worldPos.y/cell_height, true);
     }
     void AppStateGame::OnRButtonPressed(int x, int y) noexcept
     {
-        grid.setState(x/cell_width, y/cell_height, false);
+        sf::Vector2f worldPos = display->mapPixelToCoords(sf::Vector2i(x, y));
+        grid.setState(worldPos.x/cell_width, worldPos.y/cell_height, false);
     }
     void AppStateGame::OnMouseMoved(int x, int y) noexcept
     {
         if(x >= screen_width || x < 0 || y >= screen_height || y < 0)
             return;
+
+        sf::Vector2f worldPos = display->mapPixelToCoords(sf::Vector2i(x, y));
         if(sf::Mouse::isButtonPressed(sf::Mouse::Left))
-            grid.setState(x/cell_width, y/cell_height, true);
+            grid.setState(worldPos.x/cell_width, worldPos.y/cell_height, true);
         else if(sf::Mouse::isButtonPressed(sf::Mouse::Right))
-            grid.setState(x/cell_width, y/cell_height, false);
+            grid.setState(worldPos.x/cell_width, worldPos.y/cell_height, false);
     }
     void AppStateGame::OnKeyPressed(sf::Keyboard::Key key, bool alt, bool control, bool shift, bool system) noexcept
     {
@@ -92,5 +100,13 @@ namespace gol
             if(speed > 1000)
                 speed = 1000;
         }
+    }
+    void AppStateGame::OnMouseWheelMoved(int delta, int x, int y) noexcept
+    {
+        if(delta < 0)
+            view.zoom(1.1f);
+        else if(delta > 0)
+            view.zoom(0.9f);
+        display->setView(view);
     }
 }

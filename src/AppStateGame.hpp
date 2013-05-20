@@ -15,6 +15,8 @@ namespace gol
         Application *app;
         sf::Sprite cell_on, cell_off;
         sf::Clock updateTimer;
+        sf::View view;
+
         logic::Grid grid;
 
         int cell_width, cell_height, screen_width, screen_height, speed;
@@ -33,6 +35,7 @@ namespace gol
         virtual void OnRButtonPressed(int x, int y) noexcept;
         virtual void OnMouseMoved(int x, int y) noexcept;
         virtual void OnKeyPressed(sf::Keyboard::Key key, bool alt, bool control, bool shift, bool system) noexcept;
+        virtual void OnMouseWheelMoved(int delta, int x, int y) noexcept;
     };
 }
 
