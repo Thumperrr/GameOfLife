@@ -1,0 +1,25 @@
+{
+    "gol":
+    {
+        "settings":
+        {
+            "screen_width": 1024,
+            "screen_height": 768,
+            "cell_width": 16,
+            "cell_height": 16,
+            "propagation_speed": 500,
+
+            "grid":
+            {
+                "width": 64,
+                "height": 48
+            }
+
+        },
+        "images":
+        {
+            "cell_off": "res/images/OFF.png",
+            "cell_on": "res/images/ON.png"
+        }
+    }
+}
