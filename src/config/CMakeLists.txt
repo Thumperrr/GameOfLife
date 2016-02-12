@@ -1,0 +1,5 @@
+set(SRCROOT "${PROJECT_SOURCE_DIR}/src/config")
+set(SORUCES
+${SRCROOT}/Config.hpp
+${SOURCES}
+PARENT_SCOPE)

@@ -1,0 +1,5 @@
+set(SRCROOT "${PROJECT_SOURCE_DIR}/src/log")
+set(SOURCES
+${SRCROOT}/LogUtil.hpp
+${SOURCES}
+PARENT_SCOPE)

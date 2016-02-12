@@ -1,0 +1,5 @@
+set(SRCROOT "${PROJECT_SOURCE_DIR}/src/util")
+set(SORUCES
+${SRCROOT}/JsonReader.hpp
+${SOURCES}
+PARENT_SCOPE)
